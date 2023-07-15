@@ -31,6 +31,9 @@
   </head>
 
   <body>
+  <% if current_user.present? %>
+  <%= render 'layouts/navbar'%>
+  <% end %>
     <%= yield %>
   </body>
 </html>
