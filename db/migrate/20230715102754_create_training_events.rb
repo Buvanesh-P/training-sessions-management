@@ -4,7 +4,7 @@ class CreateTrainingEvents < ActiveRecord::Migration[7.0]
       t.string :title, null: false
       t.references :category, null: false, foreign_key: true
       t.integer :status
-      t.json :data
+      t.datetime :held_on
       t.references :user, null: false, foreign_key: true
       t.timestamps
     end
@@ -12,5 +12,6 @@ class CreateTrainingEvents < ActiveRecord::Migration[7.0]
     add_index :training_events, :title
     add_index :training_events, %i[status category_id], name: 'index_training_events_on_status_category_id'
     add_index :training_events, %i[status user_id], name: 'index_training_events_on_status_user_id'
+    add_index :training_events, :held_on
   end
 end
