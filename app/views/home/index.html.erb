@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<%# <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -45,5 +45,17 @@
     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
+</div> %>
+
+<div class='mt-4' data-controller='demo'>
+  <%= text_field_tag :query,'', data: {action: 'input->demo#search', target: 'demo.params'}%>
 </div>
 
+<%= turbo_stream_from 'categories' %>
+<%= turbo_frame_tag "categories" do %>
+  <% if @categories.any? %>
+    <%= render @categories %>
+  <% else %>
+    <p>No categories available</p>
+  <% end %>
+<% end %>
